@@ -2,11 +2,13 @@
 
 int main(void)
 {
-	int numbers, start1, start2, start3;
+	int start1, start2, start3;
+	long numbers;
 	printf("how many numbers in the fibonacci sequence do you want to see: ");
-	scanf("%d", &numbers);
+	scanf("%ld", &numbers);
 	if(numbers < 0)   /* to make sure that the user doesn't type a negative numbers*/
-	{		   
+	{
+		printf("invalid input");
 		return 7;  
 	}		   
 	
@@ -17,8 +19,8 @@ int main(void)
 	{							       /* the start3 is the only number that is printed */
 		start3 = start2 + start1;				/* the start1 and start2 will be added to form start3 */
 		printf("%d, ",start3);					/* the start1 is made start2 and start2 is made start3 every time */
-		printf("\n");
 	}
 
+	printf("\n");
 	return 0;
 }
