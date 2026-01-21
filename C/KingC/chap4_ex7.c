@@ -17,6 +17,5 @@ int main(void)
 	total = (3 * first_sum) + second_sum;
 	
 	printf("Check digit: %d\n", 10 - (total % 10));
-	
-	return 0;
+	return 0;//the result may be a mistake as sometimes the total can be a ten multiple meaning the check digit will be 10 which is two digits. 
 }
