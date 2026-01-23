@@ -13,7 +13,7 @@ int main(void)
 			} 	to make sure that the user wont type a number lesser than two digits*/
 	
 	digit1 = number % 10;
-	printf("The reversal is: %.1d%.1d\n", digit1, (number - digit1) / 10);
+	printf("The reversal is: %.1d%.1d\n", digit1, number / 10);
 	
 	return 0; 
 }
