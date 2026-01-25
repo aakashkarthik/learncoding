@@ -3,11 +3,7 @@
 
 int converter(int decimal,int base)
 {
-	int digit[10] = {};
-	if(decimal == 0)
-	{
-		return 0;
-	}
+	int digit[10] = {0};
 	int i = 0;
 	while(decimal != 0)
 	{
@@ -19,8 +15,9 @@ int converter(int decimal,int base)
 	{
 		printf("%d", digit[j]);
 	}
-		printf("\n");
+	printf("\n");
 }
+
 int main(void)
 {
 	int decimal, base, conversion;
