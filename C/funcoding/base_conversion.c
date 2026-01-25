@@ -1,39 +1,36 @@
 //this program converts decimal numbers to octal and binary.
 #include <stdio.h>
 
-int main(void)
+int converter(int decimal,int base)
 {
-	int decimal, binary, octal, conversion;
-	printf("do you want to convert from decimal to octal(press '8'),or from decimal to binary(press '2'): ");
-	scanf("%1d", conversion);
-	
-	printf("Enter a positive Decimal number: ");
-	scanf("%d", decimal);
-	
-	if(conversion == 2)
-	{
-		binary = binary(decimal);
-		printf("your number in binary is: %d", binary);
-	}
-	
-	if(conversion == 8)
-	{
-		octal = octal(decimal);
-		printf("Your number in octal is: %d", octal);
-	}
-	
-	return 0;
-}
-
-binary(int decimal)
-{
-	int 
+	int digit[10] = {};
 	if(decimal == 0)
 	{
 		return 0;
 	}
-	while(decimal != 0 )
+	int i = 0;
+	while(decimal != 0)
 	{
-		
+		digit[i] = decimal % base;
+		decimal /= base;
+		i++;
 	}
+	for(int j = i - 1; j >= 0; j--)
+	{
+		printf("%d", digit[j]);
+	}
+		printf("\n");
+}
+int main(void)
+{
+	int decimal, base, conversion;
+	printf(" NOTE: this program can convert decimal to any base below 10!\n");
+	printf("to convert from decimal(base 10) to base_(press the base number to which you want to convert to): ");
+	scanf("%1d", &conversion);
+	
+	printf("Enter a positive Decimal number: ");
+	scanf("%d", &decimal);
+	
+ 	converter(decimal, conversion);
+	return 0;
 }
