@@ -1,0 +1,15 @@
+#include <stdio.h>
+
+int main(void)
+{
+	int i;
+	i = 1;
+	switch(i % 3)
+	{
+		case 0: printf("zero");
+		case 1: printf("one");
+		case 2: printf("two");
+	}
+	//the output of this program is 'onetwo' as we did not put break.
+	return 0;
+}
