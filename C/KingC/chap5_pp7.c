@@ -2,28 +2,43 @@
 
 int main(void)
 {
-	int a, b, c, d, largest, smallest;
+	int a, b, c, d, set1l, set1s, set2l, set2s, largest, smallest;
 	printf("Enter 4 integers: ");
 	scanf("%d %d %d %d", &a, &b, &c, &d);
 	
-	largest = a;
-	if(b > largest)
-		largest = b;
-	if(c > largest)
-		largest = c;
-	if(d > largest)
-		largest = d;
+	if(a > b)
+	{
+		set1l = a;
+		set1s = b;
+	}
+	else
+	{
+		set1l = b;
+		set1s = a;
+	}
+	
+	if(c > d)
+	{
+		set2l = c;
+		set2s = d;
+	}
+	else
+	{
+		set2l = d;
+		set2s = c;
+	}
+	
+	if(set1l > set2l)
+		largest = set1l;
+	else
+		largest = set2l;
+	
+	if(set1s < set2s)
+		smallest = set1s;
+	else
+		smallest = set2s;
 	
 	printf("Largest: %d\n", largest);
-	
-	smallest = a;
-	if(b < smallest)
-		smallest = b;
-	if(c < smallest)
-		smallest = c;
-	if(d < smallest)
-		smallest = d;
-	
 	printf("smallest: %d\n", smallest);
 	
 	return 0;
