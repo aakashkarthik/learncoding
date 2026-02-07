@@ -7,7 +7,7 @@ int main(void)
 	scanf("%d/%d", &num, &denom);
 	num_copy = num;
 	denom_copy = denom;
-	while(n != 0)
+	while(denom_copy != 0)
 	{
 			remainder = num_copy % denom_copy;
 			num_copy = denom_copy;
