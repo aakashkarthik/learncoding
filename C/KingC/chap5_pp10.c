@@ -2,15 +2,15 @@
 
 int main(void)
 {
-	int digit1;
+	int numerical_grade,digit1;
 	char grade;
 	printf("Enter numerical grade: ");
-	scanf("%1d%*d", &digit1);
+	scanf("%d", &numerical_grade);
+	
+	digit1 = numerical_grade / 10;
 	
 	switch(digit1)
 	{
-	default : printf("Error: numerical grade is not between 0 to 100.\n please try again.");
-		  return 1;
 	case 0: case 1: case 2: case 3: case 4: case 5:
 		grade = 'F';
 		break;
@@ -24,6 +24,15 @@ int main(void)
 		grade = 'B';
 		break;
 	case 9:
+		grade = 'A';
+		break;
+	default:
+	       	if(digit1 != 10)
+		  {
+			  printf("Error: numerical grade is not between 0 to 100.\n please try again.");
+		  	  return 1;
+		  }
+		
 		grade = 'A';
 		break;
 	}
