@@ -3,39 +3,37 @@
 
 char* stringReverse(char *ptr, int size)
 {
-	char *ptr2 = (char*) malloc(sizeof(char) * size);
-	ptr2 += size - 1;
-	for(int k = 1; k <= size; k++)
+	char *reverse = (char*) malloc((sizeof(char) * size) + 1);
+	char *ptr2 = reverse;
+	for(int k = size - 1; k >= 0; k--)
 	{
-		*ptr2 = *ptr;
-		ptr++;
-		ptr2--;
+		*ptr2 = ptr[k];
+		ptr2++;
 	}
-	ptr2++;
+	*ptr2 = '\0';
 	
-	return ptr2;
+	return reverse;
+}
+
+int strlength(char *ptr)
+{
+	int len = 0;
+	while(*ptr != '\0')
+	{
+		len++;
+		ptr++;
+	}
+	return len;
 }
 
 int main(void)
 {
-	char *ch = (char*) malloc(10);
-	char *temp = ch;
+	char original[20] = "hello AK";
+	printf("Before reverse: %s\n", original);
 	
-	char c = 'a';
-	for(int j = 1; j < 10; j++, c++)
-	{
-		*temp = c;
-		*temp++;
-	}
-	
-	char *reverse = stringReverse(ch, 10);
-	for(int i = 0; i < 10; i++)
-	{
-	printf("%c ", *reverse);
-	reverse++;
-	}
-	printf("\n");
-	free(ch);
-	
+
+	char *reverse = stringReverse(original, strlength(original));
+	printf("Reversed String: %s\n", reverse);
+
 	return 0;
 }
