@@ -1,10 +1,15 @@
 #include <stdio.h>
 
-float brute_square_root(float i)
+float brute_square_root(float i, int size)
 {
-	float square_root;
+	if(size <= 0)
+	{
+		printf("invalid size.\n");
+		return -1;
+	}
+	long double square_root;
 	int p1;
-	float p2;
+	long double p2;
 	int count;
 	
 	//this part will calculate the integer part(p1)
@@ -21,7 +26,8 @@ float brute_square_root(float i)
 	p2 = 0.0;
 	//the decimal float is upto 10^x it has to calculate but in the following example 
 	//it calculates a bit extra as i need to round it off if i ever needs it.
-	for(float decimal = 0.1; decimal >= 0.000001; decimal /= 10)
+	float decimal = 0.1;
+	for(int digit = 1; digit <= size + 1; digit++)
 	{
 		p2 += decimal;
 		while((p1 + p2) * (p1 + p2) < i)
@@ -31,7 +37,9 @@ float brute_square_root(float i)
 		}
 		if((p1 + p2) * (p1 + p2) != i)
 			p2 -= decimal;
+		decimal /= 10;
 	}
+	
 	
 	square_root = p1 + p2;
 	
@@ -43,12 +51,19 @@ float brute_square_root(float i)
 int main(void)
 {
 	float i, square_root;
-	printf("this program calculates a square root of a number.The square root only shows 4 digits after the decimal point.\n\n");
-	printf("Enter a floating point number upto four digits after decimal point: ");
+	int n;
+	printf("this program calculates a square root of a number.The square root only shows 'n' digits after the decimal point.\n\n");
+	printf("Enter the value of 'n': ");
+	scanf("%d", &n);
+	printf("Enter a floating point number upto 'n' digits after decimal point: ");
 	scanf("%f", &i);
 	
-	square_root = brute_square_root(i);
+	square_root = brute_square_root(i, n);
+	if(square_root == -1)
+	{
+		return 1;
+	}
 	
-	printf("the square root is: %.4f\n", square_root);
-	printf("To verify the square root it's square is: %.4f\n\n", square_root * square_root);
+	printf("the square root is: %.*f\n", n, square_root);
+	printf("To verify the square root it's square is: %.*f\n\n", n, square_root * square_root);
 }
