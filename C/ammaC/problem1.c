@@ -7,9 +7,11 @@ char* stringReverse(char *ptr, int size)
 	ptr2 += size - 1;
 	for(int k = 1; k <= size; k++)
 	{
-	*ptr = *ptr2;
-	ptr++;
+		*ptr2 = *ptr;
+		ptr++;
+		ptr2--;
 	}
+	ptr2++;
 	
 	return ptr2;
 }
@@ -29,7 +31,7 @@ int main(void)
 	char *reverse = stringReverse(ch, 10);
 	for(int i = 0; i < 10; i++)
 	{
-	printf("%s", reverse);
+	printf("%c ", *reverse);
 	reverse++;
 	}
 	printf("\n");
