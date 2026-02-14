@@ -7,6 +7,22 @@ struct node
 	struct node *next;
 };
 
+void check(int number, struct node *temp)
+{
+	while(temp != NULL)
+	{
+		if(number != temp->data)
+			temp = temp->next;
+		else
+			break;
+	}
+	
+	if(temp == NULL)
+		printf("The number you entered is not there in the linked list.\n");
+	else
+		printf("The number you entered is there in the linked list.\n");
+}
+
 void print(struct node *head)
 {
 	if(head == NULL)
@@ -85,7 +101,7 @@ int main(void)
 	struct node *head = NULL;
 	int n, node, command;
 	
-	printf("(1) for insert at begining.\n(2) for inserting after a given node.\n(3) for inserting in the end.\n(4) for printing its contents.\n");
+	printf("(1) for insert at begining.\n(2) for inserting after a given node.\n(3) for inserting in the end.\n(4) for printing its contents.\n(5) for checking if a given content is in the list. \n");
 	
 	do
 	{
@@ -114,6 +130,11 @@ int main(void)
 			case 3:	printf("Enter the value to insert: ");
 				scanf("%d", &n);
 				head = insert_end(n, head);
+				break;
+				
+			case 5: printf("Enter the value that is to be checked: ");
+				scanf("%d", &n);
+				check(n, head);
 				break;
 				
 			default: printf("Wrong value entered! \n");
