@@ -7,27 +7,30 @@ struct node
 	struct node *next;
 };
 
-void check(int number, struct node *temp)
+struct node *head = NULL;
+
+void check(int number)
 {
+    struct node *temp = head;
 	while(temp != NULL)
 	{
-		if(number != temp->data)
-			temp = temp->next;
+		if(number != head->data)
+		    temp = temp->next;
 		else
 			break;
 	}
 	
 	if(temp == NULL)
-		printf("The number you entered is not there in the linked list.\n");
+		printf("The number you entered is not there in the linked list.\n\n");
 	else
-		printf("The number you entered is there in the linked list.\n");
+		printf("The number you entered is there in the linked list.\n\n");
 }
 
-void print(struct node *head)
+void print()
 {
 	if(head == NULL)
 	{
-		printf("The list is empty.\n");
+		printf("The list is empty.\n\n");
 		return;
 	}
 	
@@ -40,39 +43,41 @@ void print(struct node *head)
 	printf("\n");
 }
 
-struct node* insert_begin(int num,struct node *head)
+void insert_begin(int num)
 {
 	struct node *new = (struct node*) malloc(sizeof(struct node));
 	new->data = num;
 	new->next = head;
-
-	return new;
+    
+    head = new;
 }
 
-void insert_middle(int value, int new_num, struct node *head)
+void insert_middle(int value, int new_num)
 {
 	struct node *temp = head;
 	struct node *new = (struct node*) malloc(sizeof(struct node));
 	new->data = new_num;
 	
 	
-	while(temp != NULL && temp->data != value )
+	while(temp != NULL && temp->data != value)
 	{
 		temp = temp->next;
 	}
 
 	if(temp == NULL)
 	{
-		printf("List doesnt contain the value user provided.\n");
+		printf("List doesnt contain the value you gave.\n\n");
 		return;
 	}
 
 	new->next = temp->next;
 	temp->next = new;
 	
+    head = head;
+	print();
 }
 
-struct node* insert_end(int num, struct node *head)
+struct node* insert_end(int num)
 {
 	struct node *temp = head;
 	struct node *new = (struct node*) malloc(sizeof(struct node));
@@ -93,15 +98,71 @@ struct node* insert_end(int num, struct node *head)
 		temp->next = new;
 	}
 	
-	return head;
+    head = head;
+	print();
+}
+
+void delete(int delete)
+{
+	struct node *temp = head;
+	if(head == NULL)
+	{
+		printf("The list is empty.\n\n");
+		return;
+	}
+	
+    else if(head->data == delete)
+    {
+        if(head->next == NULL)
+        {
+            head = NULL;
+		    free(temp);
+            print();
+            return;
+        }
+        else
+        {
+            head = head->next;
+            free(temp);
+            print();
+            return;
+        }
+    }
+    if(temp->next != NULL)
+	{
+		while(temp->next->data != delete)
+		{
+			temp = temp->next;
+		}
+    }
+		
+	if(temp->next == NULL)
+	{
+		printf("List doesnt contain the value you gave.\n\n");
+		return;
+	}
+	
+	struct node *temp2 = temp->next;
+	temp->next = temp->next->next;
+	free(temp2);
+	
+	print();
 }
 
 int main(void)
 {
-	struct node *head = NULL;
 	int n, node, command;
 	
-	printf("(1) for insert at begining.\n(2) for inserting after a given node.\n(3) for inserting in the end.\n(4) for printing its contents.\n(5) for checking if a given content is in the list. \n");
+	printf("The command table:- \n\n\n");
+	
+	printf("         |(1) at the begining.\n");
+	printf("insert - |(2) after first encountering a given node.\n");
+	printf("         |(3) in the end.\n\n");
+	
+	printf("display - |(4) for printing its contents.\n");
+	printf("          |(5) for checking if a given content is in the list. \n\n");
+	
+	printf("delete - |(6) any given value encountered first.\n\n");
 	
 	do
 	{
@@ -111,30 +172,37 @@ int main(void)
 		switch (command)
 		{
 			case 0: break;
-			case 4: print(head);
-				continue;
-
+				
 			case 1: 
 				printf("Enter the value to insert: ");
 				scanf("%d", &n);
-				head = insert_begin(n, head);
+				insert_begin(n);
+                print();
 				break;
 				
 			case 2:	printf("Enter the value to insert: ");
 				scanf("%d", &n);
 				printf("after which node data: ");
 				scanf("%d", &node);
-				insert_middle(node, n, head);
+				insert_middle(node, n);
 				break;
 				
 			case 3:	printf("Enter the value to insert: ");
 				scanf("%d", &n);
-				head = insert_end(n, head);
+				insert_end(n);
 				break;
 				
-			case 5: printf("Enter the value that is to be checked: ");
+			case 4: print();
+				break;
+				
+			case 5: printf("Enter the value that is to be searched: ");
 				scanf("%d", &n);
-				check(n, head);
+				check(n);
+				break;
+				
+			case 6: printf("Enter the value to delete: ");
+				scanf("%d", &n);
+				delete(n);
 				break;
 				
 			default: printf("Wrong value entered! \n");
