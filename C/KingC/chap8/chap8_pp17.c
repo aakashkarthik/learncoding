@@ -16,7 +16,7 @@ int main(void)
     {
         square[row][col] = i;
         
-        if(i == 25)
+        if(i == n * n)
             break;
         
         if(row == 0)
