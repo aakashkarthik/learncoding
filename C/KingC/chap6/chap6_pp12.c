@@ -2,7 +2,6 @@
 
 int main(void)
 {
-	int i, factorial;
 	float e, sum, n;
 	printf("This program approximates the value of the mathematical constant 'e' until it is just below 'n'.\n\n");
 	printf("Enter the value of n: ");
@@ -15,15 +14,13 @@ int main(void)
 	}
 	
 	e = 0;
-	for(int j = 1; e <= n; j++)
+    sum = 1;
+	for(int j = 1; e < n; j++)
 	{
-		sum = 1;
-		for(i = 2; i <= j; i++)
-			 sum = sum * i;
-		
+		sum = sum * j;
 		e += (1/sum);
 	}
-		e -= (2/sum);
+		e -= (1/sum);
 	
-	printf("The value of 'e' until the 'n'th term is: %f\n", e);
+	printf("The value of 'e' until it is below n is: %f\n", e);
 }
