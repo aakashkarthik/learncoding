@@ -10,8 +10,6 @@ bool play_game(void);
 int my_random(void)
 {
     srand((unsigned) time(NULL));
-    for(long long i = 0; i < 10000000; i++)
-    {}
     return rand() % 6 + 1;
 }
 
