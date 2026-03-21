@@ -3,30 +3,22 @@
 
 int main(void)
 {
-    int repeat_digit[11] = {0};
-    bool digit_seen[10] = {false};
-    short digit, i;
-    long n;
+    int repeat_digit[10] = {0};
+    char c;
     
     printf("Enter a number: ");
-    scanf("%ld", &n);
-    
-    while(n > 0)
-    {
-        digit = n % 10;
-        repeat_digit[digit] += 1;
-        n /= 10;
-    }
+    while((c = getchar()) != '\n')
+        repeat_digit[c - '0'] += 1;
     
     printf("digit:%9d", 0);
-    for(int k = 1; k < 10; k++)
+    for(short k = 1; k < 10; k++)
     {
         printf("%2d", k);
     }
     printf("\n");
     printf("occurrences: ");
     
-    for(i = 0; i < 10; i++)
+    for(short i = 0; i < 10; i++)
     {
         printf("%2d", repeat_digit[i]);
     }
